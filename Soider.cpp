@@ -36,15 +36,15 @@ Soider * Soider::createWithSoiderTypes(SoiderTypes soiderType)
 	const char*soiderFramName;
 	switch (soiderType) {
 	case SoiderType1:
-		soiderFramName = "soilder_1_run.png";
+		soiderFramName = "boss.png";
 		soider->maxblood=200;
 		break;
 	case SoiderType2:
-		soiderFramName = "soilder2_1_run.png";
+		soiderFramName = "boss.png";
 		soider->maxblood = 150;
 		break;
 	case SoiderType3:
-		soiderFramName = "soilder2_1_run.png";
+		soiderFramName = "boss.png";
 		soider->maxblood = 400;
 		break;
 	}
@@ -64,8 +64,7 @@ Soider * Soider::create(const char *filename)
 	Soider *sprite = new Soider();
 	if (sprite && sprite->initWithFile(filename))
 	{
-		sprite->autorelease(); 
-		return sprite;
+		sprite->autorelease(); return sprite;
 	}
 	CC_SAFE_DELETE(sprite);
 	return nullptr;
