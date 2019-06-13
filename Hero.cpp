@@ -2,10 +2,15 @@
 
 
 
-Hero::Hero(){
+Hero::Hero() :
+	IsRunning(false),
+	IsAttack(false),
+	Hero_name(NULL),
+	HeroDirecton(false)
+{
 }
 
-Hero::Hero(HeroTypes heroType){
+Hero::Hero(HeroTypes heroType) {
 	this->heroType = heroType;
 }
 
@@ -14,14 +19,15 @@ Hero::~Hero()
 {
 }
 
- void Hero::InitHeroSprite(char * hero_name){
+void Hero::InitHeroSprite(char * hero_name) {
 	Hero_name = hero_name;
 	this->m_HeroSprite = CCSprite::create(hero_name);
+	//this->m_HeroSprite->initWithFile(hero_name);
 	this->addChild(m_HeroSprite);
-	
+
 }
 
-void Hero::SetAnimation(const char * name_each, const unsigned int num, bool run_directon){
+void Hero::SetAnimation(const char * name_each, const unsigned int num, bool run_directon) {
 	if (HeroDirecton != run_directon)
 	{
 		HeroDirecton = run_directon;
@@ -30,25 +36,25 @@ void Hero::SetAnimation(const char * name_each, const unsigned int num, bool run
 	if (IsRunning) return;
 	CCAnimation* animation = CCAnimation::create();
 
-	for (int i = 1; i <= num; i++){
+	for (int i = 1; i <= num; i++) {
 		char szName[100] = { 0 };
 		sprintf(szName, "%s%d.png", name_each, i);
 		animation->addSpriteFrameWithFileName(szName); //加载动画的帧  
 	}
-	animation->setDelayPerUnit(0.1f);
+	animation->setDelayPerUnit(0.2f);
 	animation->setRestoreOriginalFrame(true);
 	animation->setLoops(-1); //动画循环
-	if (HeroDirecton != run_directon){
+	if (HeroDirecton != run_directon) {
 		HeroDirecton = run_directon;
 	}
 	//将动画包装成一个动作
 	CCAnimate* act = CCAnimate::create(animation);
 	m_HeroSprite->runAction(act);
-	IsRunning = true;
+	IsRunning = false;
 }
 
-void Hero::StopAnimation(){
-	if(!IsRunning) return;
+void Hero::StopAnimation() {
+	//if (!IsRunning) return;
 	m_HeroSprite->stopAllActions();//当前精灵停止所有动画
 
 	//恢复精灵原来的初始化贴图 
@@ -57,7 +63,7 @@ void Hero::StopAnimation(){
 	m_HeroSprite->setFlipX(HeroDirecton);
 
 	this->addChild(m_HeroSprite);
-	IsRunning = false;
+	//IsRunning = false;
 }
 
 void Hero::AttackAnimation(const char * name_each, const unsigned int num, bool run_directon) {
@@ -69,10 +75,10 @@ void Hero::AttackAnimation(const char * name_each, const unsigned int num, bool 
 		sprintf(szName, "%s%d.png", name_each, i);
 		animation->addSpriteFrameWithFileName(szName); //加载动画的帧  
 	}
-	animation->setDelayPerUnit(0.05f);
+	animation->setDelayPerUnit(0.15f);
 	animation->setRestoreOriginalFrame(true);
 	animation->setLoops(1); //动画循环1次
-	if (HeroDirecton != run_directon){
+	if (HeroDirecton != run_directon) {
 		HeroDirecton = run_directon;
 	}
 	//将动画包装成一个动作
@@ -84,10 +90,14 @@ void Hero::AttackAnimation(const char * name_each, const unsigned int num, bool 
 	m_HeroSprite->runAction(attackact);
 }
 
-void Hero::AttackEnd(){
+void Hero::AttackEnd() {
 	//恢复精灵原来的初始化贴图 
 	this->removeChild(m_HeroSprite, TRUE);//把原来的精灵删除掉
 	m_HeroSprite = CCSprite::create(Hero_name);//恢复精灵原来的贴图样子
+	if (m_HeroSprite == nullptr) {
+		log("创建失败");
+		return;
+	}
 	m_HeroSprite->setFlipX(HeroDirecton);
 	this->addChild(m_HeroSprite);
 	IsAttack = false;
@@ -99,7 +109,7 @@ void Hero::AttackEnd(){
 Hero * Hero::createWithHeroTypes(HeroTypes heroType)
 {
 	Hero*hero = new Hero(heroType);
-	const char*heroFramName;
+	char*heroFramName;
 	switch (heroType) {
 	case HeroType1:
 		heroFramName = "Male_shooter_stand_1.png";
@@ -115,12 +125,17 @@ Hero * Hero::createWithHeroTypes(HeroTypes heroType)
 		break;
 	}
 	//soider->initWithSpriteFrameName(soiderFramName);
-	//hero->initWithFile(heroFramName);
+	hero->InitHeroSprite(heroFramName);
 	hero->autorelease();
 	hero->unscheduleUpdate();
 	hero->scheduleUpdate();
 
 	return hero;
+}
+
+Hero * Hero::create(const char * filename)
+{
+	return nullptr;
 }
 
 void Hero::update(float dt) {

@@ -8,7 +8,7 @@ protected: varType varName;\
 public: virtual varType get##funName(void) const { return varName; }\
 public: virtual void set##funName(varType var){ varName = var; }
 
-#define CREATE_FUNC(__TYPE__) \
+/*#define CREATE_FUNC(__TYPE__) \
 static__TYPE__* create() \
 { \
 	__TYPE__ *pRet = new __TYPE__(); \
@@ -23,7 +23,7 @@ static__TYPE__* create() \
 		pRet = NULL; \
 		return NULL; \
 	} \
-}
+}*/
 
 
 typedef enum {
@@ -70,13 +70,12 @@ public:
 	//判断是否在攻击动画
 	bool IsAttack;
 	//英雄运动的方向
-
 	bool HeroDirecton;
 
-	//CREATE_FUNC(Hero);
+	CREATE_FUNC(Hero);
 
 	static Hero*createWithHeroTypes(HeroTypes heroType);
-
+	static Hero* create(const char * filename);
 	void update(float dt);
 
 };
