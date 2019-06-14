@@ -19,7 +19,7 @@ int exp_increase = 100;
 int jishashu=0;
 int budaoshu = 0;
 
-hero _plane(100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 0, 100000);
+hero _plane(100, 100, 100, 100, 100, 100, 100, 3, 100, 100, 0, 100000);
 
 hero _sprite2(100, 10, 10, 10, 80, 10, 10, 10, 10, 10, 300, 30);
 
@@ -107,10 +107,6 @@ bool HelloWorld::init()
 	float b = object["y"].asFloat();
 
 
-	plane = Sprite::create("plane.png");
-	_tileMap->addChild(plane, 1, 131);
-	plane->setPosition(Vec2(a + 100, b + 40));
-	plane->setAnchorPoint(Vec2(1.0, 0.5));
 	sprite2 = Sprite::create("plane1.png");
 	_tileMap->addChild(sprite2, 1, 133);
 	sprite2->setPosition(Vec2(a + 500, b + 40));
@@ -685,17 +681,19 @@ void HelloWorld::buyLiveCallBack4(cocos2d::Ref* pSender){
 	_plane.me_this_eqp[2][2]--;
 	_plane.me_this_eqp[2][3]++;
 }
+bool have_shoe = false;
 void HelloWorld::buyShoeCallBack1(cocos2d::Ref* pSender){
-	if (_plane._gp < 250 || _plane.eqp_num == 6) { return; }
-	_plane._speed+=25;
+	if (_plane._gp < 250 || _plane.eqp_num == 6||have_shoe==true) { return; }
+	_plane._speed+=1.5;
 	_plane._gp -= 250;
 	_plane.me_have[3][0] = true;
 	_plane.me_this_eqp[3][0]++;
 	_plane.eqp_num++;
+	have_shoe = true;
 }
 void HelloWorld::buyShoeCallBack2(cocos2d::Ref* pSender){
 	if (_plane._gp < 800 || _plane.me_have[3][0] == false) { return; }
-	_plane._speed += 80;
+	_plane._speed += 2.0;
 	_plane._gp -= 800;
 	_plane.me_have[3][0] = false;
 	_plane.me_have[3][1] = true;
@@ -704,7 +702,7 @@ void HelloWorld::buyShoeCallBack2(cocos2d::Ref* pSender){
 }
 void HelloWorld::buyShoeCallBack3(cocos2d::Ref* pSender){
 	if (_plane._gp < 1100 || _plane.me_have[3][0] == false) { return; }
-	_plane._speed += 50;
+	_plane._speed += 1.5;
 	_plane._gp -= 1100;
 	_plane._ad += 80;
 	_plane.me_have[3][0] = false;
@@ -714,7 +712,7 @@ void HelloWorld::buyShoeCallBack3(cocos2d::Ref* pSender){
 }
 void HelloWorld::buyShoeCallBack4(cocos2d::Ref* pSender){
 	if (_plane._gp < 1100 || _plane.me_have[3][0] == false) { return; }
-	_plane._speed += 50;
+	_plane._speed += 1.5;
 	_plane._gp -= 1100;
 	_plane._hujia += 80;
 	_plane.me_have[3][0] = false;
@@ -1455,14 +1453,14 @@ void HelloWorld::update(float delta) {
 	auto S_key = cocos2d::EventKeyboard::KeyCode::KEY_S;
 	auto D_key = cocos2d::EventKeyboard::KeyCode::KEY_D;
 	if (isKeyPressed(W_key)) {
-		MoveBy *moveby = MoveBy::create(0.1f, ccp(0, 2));
+		MoveBy *moveby = MoveBy::create(0.1f, ccp(0, _plane._speed));
 
 		ActionInterval *SineOUt = EaseSineInOut::create(moveby);
 
 		hero1->runAction(moveby);
 
 		sprite1_position_x = hero1->getPositionX();
-		sprite1_position_y = hero1->getPositionY() + 2;
+		sprite1_position_y = hero1->getPositionY() + _plane._speed;
 		Vec2 sprite1_position = hero1->getPosition();
 		Vec2 move = scenemove(hero1, _tileMap, sprite1_position);
 		maplayer->setPosition(move);
@@ -1470,13 +1468,13 @@ void HelloWorld::update(float delta) {
 	}
 
 	if (isKeyPressed(A_key)) {
-		MoveBy *moveby = MoveBy::create(0.1f, ccp(-2, 0));
+		MoveBy *moveby = MoveBy::create(0.1f, ccp(-_plane._speed, 0));
 
 		ActionInterval *SineOUt = EaseSineInOut::create(moveby);
 
 		hero1->runAction(moveby);
 
-		sprite1_position_x = hero1->getPositionX() - 2;
+		sprite1_position_x = hero1->getPositionX() - _plane._speed;
 		sprite1_position_y = hero1->getPositionY();
 		Vec2 sprite1_position = hero1->getPosition();
 		Vec2 move = scenemove(hero1, _tileMap, sprite1_position);
@@ -1485,14 +1483,14 @@ void HelloWorld::update(float delta) {
 	}
 
 	if (isKeyPressed(S_key)) {
-		MoveBy *moveby = MoveBy::create(0.1f, ccp(0, -2));
+		MoveBy *moveby = MoveBy::create(0.1f, ccp(0, -_plane._speed));
 
 		ActionInterval *SineOUt = EaseSineInOut::create(moveby);
 
 		hero1->runAction(moveby);
 
 		sprite1_position_x = hero1->getPositionX();
-		sprite1_position_y = hero1->getPositionY() - 2;
+		sprite1_position_y = hero1->getPositionY() - _plane._speed;
 		Vec2 sprite1_position = hero1->getPosition();
 		Vec2 move = scenemove(hero1, _tileMap, sprite1_position);
 		maplayer->setPosition(move);
@@ -1501,12 +1499,12 @@ void HelloWorld::update(float delta) {
 	}
 
 	if (isKeyPressed(D_key)) {
-		MoveBy *moveby = MoveBy::create(0.1f, ccp(2, 0));
+		MoveBy *moveby = MoveBy::create(0.1f, ccp(_plane._speed, 0));
 
 		ActionInterval *SineOUt = EaseSineInOut::create(moveby);
 
 		hero1->runAction(moveby);
-		sprite1_position_x = hero1->getPositionX() + 2;
+		sprite1_position_x = hero1->getPositionX() + _plane._speed;
 		sprite1_position_y = hero1->getPositionY();
 		Vec2 sprite1_position = hero1->getPosition();
 		Vec2 move = scenemove(hero1, _tileMap, sprite1_position);

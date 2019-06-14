@@ -20,7 +20,7 @@ public:
 	people();
 	people(float a, float b, float c, float d, float e, float f, float g,float h, int i, int j,int k,int l) {
 		_max_blood = a; _max_mp=b; _ad = c; _ap = d; _hujia = e; _mokang = f;
-		_gongsu = g; _yisu = h; _side = i; _attackdis = j; _exp = k; _gp = l;
+		_gongsu = g; _speed = h; _side = i; _attackdis = j; _exp = k; _gp = l;
 	}
 	~people();
 	inline float get_blood() {return _blood;}
