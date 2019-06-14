@@ -5,8 +5,10 @@
 USING_NS_CC;
 
 typedef enum {
-	TowerType1,//防御塔
-	TowerType2//水晶
+	TowerType1,//我方防御塔
+	TowerType2,//我方水晶
+	TowerType3,//敌方防御塔
+	TowerType4//敌方水晶
 }TowerTypes;
 
 class Tower :

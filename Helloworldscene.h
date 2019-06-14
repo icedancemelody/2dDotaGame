@@ -53,6 +53,7 @@ public:
 	cocos2d::Layer* _ScoreboardLayer;
 	cocos2d::Layer* _setLayer;
 	cocos2d::Layer* maplayer;
+	cocos2d::Layer* _shopLayer;
 
 	int offsetX = 0;
 
@@ -86,6 +87,26 @@ public:
 
 	void createScoreCallBack(cocos2d::Ref* pSender);
 	void closeScoreCallBack(cocos2d::Ref* pSender);
+	void createShopCallBack(cocos2d::Ref* pSender);
+	void closeShopCallBack(cocos2d::Ref* pSender);
+	bool shop_is_open = false;
+	bool score_is_open = false;
+	void buySwordCallBack1(cocos2d::Ref* pSender);
+	void buySwordCallBack2(cocos2d::Ref* pSender);
+	void buySwordCallBack3(cocos2d::Ref* pSender);
+	void buySwordCallBack4(cocos2d::Ref* pSender);
+	void buyClothCallBack1(cocos2d::Ref* pSender);
+	void buyClothCallBack2(cocos2d::Ref* pSender);
+	void buyClothCallBack3(cocos2d::Ref* pSender);
+	void buyClothCallBack4(cocos2d::Ref* pSender);
+	void buyLiveCallBack1(cocos2d::Ref* pSender);
+	void buyLiveCallBack2(cocos2d::Ref* pSender);
+	void buyLiveCallBack3(cocos2d::Ref* pSender);
+	void buyLiveCallBack4(cocos2d::Ref* pSender);
+	void buyShoeCallBack1(cocos2d::Ref* pSender);
+	void buyShoeCallBack2(cocos2d::Ref* pSender);
+	void buyShoeCallBack3(cocos2d::Ref* pSender);
+	void buyShoeCallBack4(cocos2d::Ref* pSender);
 
 
 private:

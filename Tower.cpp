@@ -30,6 +30,22 @@ Tower::Tower(TowerTypes towerTYpe) {
 		setBlood(200);
 		setExp(10);
 	}
+	case TowerType3: {
+		setAd(150);
+		setHujia(100);
+		setVal(200);
+		setMaxblood(500);
+		setBlood(500);
+		setExp(100);
+	}
+	case TowerType4: {
+		setAd(0);
+		setHujia(100);
+		setVal(200);
+		setMaxblood(500);
+		setBlood(200);
+		setExp(10);
+	}
 	}
 }
 
@@ -55,17 +71,35 @@ Tower * Tower::createWithTowerTypes(TowerTypes towerType)
 	{
 	case TowerType1:
 		towerFramName = "tower3.png";  //此处可根据需求替换图片文件名
-		tower->setMaxblood(1000);
-		tower->setBlood(1000);
+		tower->setMaxblood(3000);
+		tower->setBlood(3000);
 		tower->setAd(150);
-		tower->setHujia(80);
+		tower->setHujia(100);
 		tower->setExp(100);
-		tower->setVal(100);
+		tower->setVal(300);
 		break;
 	case TowerType2:
+		towerFramName = "camp2.png";
+		tower->setMaxblood(9000);
+		tower->setBlood(9000);
+		tower->setAd(0);
+		tower->setHujia(90);
+		tower->setExp(10);
+		tower->setVal(50);
+		break;
+	case TowerType3:
+		towerFramName = "tower2.png";  //此处可根据需求替换图片文件名
+		tower->setMaxblood(3000);
+		tower->setBlood(3000);
+		tower->setAd(150);
+		tower->setHujia(100);
+		tower->setExp(100);
+		tower->setVal(300);
+		break;
+	case TowerType4:
 		towerFramName = "camp1.png";
-		tower->setMaxblood(5000);
-		tower->setBlood(5000);
+		tower->setMaxblood(9000);
+		tower->setBlood(9000);
 		tower->setAd(0);
 		tower->setHujia(90);
 		tower->setExp(10);
@@ -113,6 +147,10 @@ void Tower::update(float dt)
 
 		break;
 	case TowerType2:
+		break;
+	case TowerType3:
+		break;
+	case TowerType4:
 		break;
 	}
 

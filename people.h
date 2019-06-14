@@ -12,11 +12,11 @@ class soiderD;
 class people
 {
 protected:
-	float _max_blood, _max_mp;
 	float _blood, _ap, _mokang, _gongsu, _yisu;
 	int _side, _attackdis;
 public:
-	int _exp; float _ad; int _gp; int _hujia;
+	int _exp; float _ad; int _gp; int _hujia;	float _max_blood,_max_mp; float _speed;
+	char *hero_name[50];
 	people();
 	people(float a, float b, float c, float d, float e, float f, float g,float h, int i, int j,int k,int l) {
 		_max_blood = a; _max_mp=b; _ad = c; _ap = d; _hujia = e; _mokang = f;
@@ -47,7 +47,7 @@ protected:
 	int _lianshashu = 0;//连杀数
 	int _liansishu = 0;//连死数
 public:
-	int _level;
+	int _level=1;
 	hero();
 	hero(float a, float b, float c, float d, float e, float f, float g, float h, int i, int j,int k,int l);
 	void gain_eqp(equipment eqp);
@@ -73,7 +73,10 @@ public:
 	inline float get_exp() { return _exp; }
 	inline float get_gp() { return _gp; }
 	inline float get_level() { return _level; }
-	
+	//装备
+	int eqp_num=0;
+	bool me_have[4][4] = { 0 };
+	int me_this_eqp[4][4] = { 0 };
 };
 
 class soiderA :public people {
