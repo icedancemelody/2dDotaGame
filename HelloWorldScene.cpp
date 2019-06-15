@@ -103,8 +103,8 @@ bool HelloWorld::init()
 		"/Button/setting.png",
 		CC_CALLBACK_1(HelloWorld::menuSetting, this)
 	);
-	settingButton->setPosition(Vec2(10 + origin.x, 30 + origin.y));
-
+	settingButton->setPosition(Vec2(50 + origin.x, 50 + origin.y));
+	settingButton->setScale(0.5f);
     auto menu = Menu::create(closeItem,startButton,settingButton, NULL);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
@@ -130,7 +130,7 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 void HelloWorld::menuEnter(Ref* pSender)
 {
 	auto sc = StartScene::createScene();
-	auto reScene = TransitionTurnOffTiles::create(2.0f, sc);
+	auto reScene = TransitionTurnOffTiles::create(0.5f, sc);
 	Director::getInstance()->pushScene(reScene);
 }
 

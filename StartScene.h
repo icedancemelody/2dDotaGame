@@ -10,7 +10,9 @@ public:
 
 	virtual bool init();
 	void menuItem1Callback(cocos2d::Ref* pSender);
-	void menuEnter(cocos2d::Ref* pSender);
+	void menuEnterWarrior(cocos2d::Ref* pSender);
+	void menuEnterShooter(cocos2d::Ref* pSender); 
+	void menuEnterMega(cocos2d::Ref* pSender);
 	CREATE_FUNC(StartScene);
 };
 

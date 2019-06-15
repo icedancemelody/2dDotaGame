@@ -3,6 +3,10 @@
 
 #include "cocos2d.h"
 #include"bloodView.h"
+#include"StartScene.h"
+#include"Gamepause.h"
+#include<string.h>
+#include<stdlib.h>
 class GameMap : public cocos2d::Layer
 {
 	cocos2d::TMXTiledMap* _tileMap;
@@ -11,10 +15,14 @@ class GameMap : public cocos2d::Layer
 	cocos2d::Layer* _HPLayer;
 	cocos2d::Layer* _ScoreboardLayer;
 	public:
-	static cocos2d::Scene* createScene();
-
-	int time=0;
+	static cocos2d::Scene* createScene(std::string HeroName);
 	virtual bool init();
+	
+	int time=0;
+	std::string _heroname;
+	
+	void initWithName(std::string HeroName);
+
 	bloodView *m_pBloodView;//ÑªÌõÀà
 	void createShopCallBack(cocos2d::Ref* pSender);
 	void closeShopCallBack(cocos2d::Ref* pSender);
@@ -40,6 +48,8 @@ class GameMap : public cocos2d::Layer
 	void buyShoeCallBack3(cocos2d::Ref* pSender);
 	void buyShoeCallBack4(cocos2d::Ref* pSender);
 	// implement the "static create()" method manually
+
+	void createSettingCallBack(cocos2d::Ref* pSender);
 	CREATE_FUNC(GameMap);
 };
 

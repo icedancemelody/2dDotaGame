@@ -51,21 +51,21 @@ bool StartScene::init() {
 	auto heroButton_1= MenuItemImage::create(
 		"/Hero/Hero1touxiang.png",
 		"/Hero/Hero1touxiang,png",
-		CC_CALLBACK_1(StartScene::menuEnter, this)
+		CC_CALLBACK_1(StartScene::menuEnterWarrior, this)
 	);
 	heroButton_1->setPosition(Vec2((visibleSize.width / 5)*2  -100+origin.x, (visibleSize.height / 5)*2 + origin.y));
 
 	auto heroButton_2= MenuItemImage::create(
 		"/Hero/Hero2touxiang.png",
 		"/Hero/Hero2touxiang,png",
-		CC_CALLBACK_1(StartScene::menuEnter, this)
+		CC_CALLBACK_1(StartScene::menuEnterMega, this)
 	);
 	heroButton_2->setPosition(Vec2((visibleSize.width / 5) * 2 +100+ origin.x, (visibleSize.height / 5) * 2 + origin.y));
 
 	auto heroButton_3 = MenuItemImage::create(
 		"/Hero/Hero3touxiang.png",
 		"/Hero/Hero3touxiang,png",
-		CC_CALLBACK_1(StartScene::menuEnter, this)
+		CC_CALLBACK_1(StartScene::menuEnterShooter, this)
 	);
 	heroButton_3->setPosition(Vec2((visibleSize.width / 5) * 2 +300+ origin.x, (visibleSize.height / 5) * 2 + origin.y));
 	
@@ -81,7 +81,15 @@ void StartScene::menuItem1Callback(cocos2d::Ref* pSender)
 	Director::getInstance()->popScene();
 }
 
-void StartScene::menuEnter(cocos2d::Ref* pSender){
-	auto sc = GameMap::createScene();
-	Director::getInstance()->pushScene(sc);
+void StartScene::menuEnterWarrior(cocos2d::Ref* pSender){//选择英雄为战士
+	auto scene = GameMap::createScene("warrior");
+	Director::getInstance()->pushScene(scene);
+}
+void StartScene::menuEnterShooter(cocos2d::Ref* pSender) {
+	auto scene = GameMap::createScene("mage");
+	Director::getInstance()->pushScene(scene);
+}
+void StartScene::menuEnterMega(cocos2d::Ref* pSender) {
+	auto scene = GameMap::createScene("shooter");
+	Director::getInstance()->pushScene(scene);
 }
