@@ -77,6 +77,7 @@ Tower * Tower::createWithTowerTypes(TowerTypes towerType)
 		tower->setHujia(100);
 		tower->setExp(100);
 		tower->setVal(300);
+		tower->setAttack_distance(600);
 		break;
 	case TowerType2:
 		towerFramName = "camp2.png";
@@ -86,6 +87,7 @@ Tower * Tower::createWithTowerTypes(TowerTypes towerType)
 		tower->setHujia(90);
 		tower->setExp(10);
 		tower->setVal(50);
+		tower->setAttack_distance(600);
 		break;
 	case TowerType3:
 		towerFramName = "tower2.png";  //此处可根据需求替换图片文件名
@@ -95,6 +97,7 @@ Tower * Tower::createWithTowerTypes(TowerTypes towerType)
 		tower->setHujia(100);
 		tower->setExp(100);
 		tower->setVal(300);
+		tower->setAttack_distance(600);
 		break;
 	case TowerType4:
 		towerFramName = "camp1.png";
@@ -104,6 +107,7 @@ Tower * Tower::createWithTowerTypes(TowerTypes towerType)
 		tower->setHujia(90);
 		tower->setExp(10);
 		tower->setVal(50);
+		tower->setAttack_distance(600);
 		break;
 	}
 	//soider->initWithSpriteFrameName(soiderFramName);

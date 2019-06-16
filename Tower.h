@@ -21,6 +21,7 @@ class Tower :
 	CC_SYNTHESIZE(int, hujia, Hujia);
 	CC_SYNTHESIZE(int, val, Val);
 	CC_SYNTHESIZE(int, exp, Exp);
+	CC_SYNTHESIZE(int, attack_distance, Attack_distance);
 	CC_SYNTHESIZE(cocos2d::Vec2, velocity, Velocity);
 	CC_SYNTHESIZE(ProgressTimer*, hpw, Hpw);//创建一个PT类然后可以调用gethps->setpercentage来改变血条
 public:

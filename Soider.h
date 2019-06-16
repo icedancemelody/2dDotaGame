@@ -23,6 +23,7 @@ class Soider :
 	CC_SYNTHESIZE(int, blood, Blood);
 	CC_SYNTHESIZE(int, hujia, Hujia);
 	CC_SYNTHESIZE(int, exp, Exp);
+	CC_SYNTHESIZE(int,attack_distance, Attack_distance);
 	CC_SYNTHESIZE(int, val, Val);//val即value，指小兵价值
 	CC_SYNTHESIZE(cocos2d::Vec2, velocity, Velocity);
 	CC_SYNTHESIZE(ProgressTimer*, hps, Hps);//创建一个PT类然后可以调用gethps->setpercentage来改变血条

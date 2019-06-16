@@ -12,17 +12,20 @@ class soiderD;
 class people
 {
 protected:
-	float _blood, _ap, _mokang, _gongsu, _yisu;
+	float  _ap, _mokang, _gongsu, _yisu;
 	int _side, _attackdis;
 public:
-	int _exp; float _ad; int _gp; int _hujia;	float _max_blood,_max_mp; float _speed;
+	int _exp; float _ad; int _gp; int _hujia;int _max_blood, _max_mp; float _speed; float _blood;
 	char *hero_name[50];
+	int attackrange;
 	people();
-	people(float a, float b, float c, float d, float e, float f, float g,float h, int i, int j,int k,int l) {
+	people(int a, float b, float c, float d, int e, float f, float g,float h, int i, int j,int k,int l,int m) {
 		_max_blood = a; _max_mp=b; _ad = c; _ap = d; _hujia = e; _mokang = f;
-		_gongsu = g; _yisu = h; _side = i; _attackdis = j; _exp = k; _gp = l;
+		_gongsu = g; _speed = h; _side = i; _attackdis = j; _exp = k; _gp = l;
+		attackrange = m;
 	}
 	~people();
+	inline float get_maxblood() { return _max_blood; }
 	inline float get_blood() {return _blood;}
 	inline float get_ad() {return _ad;}
 	inline float get_ap() {return _ap;}
@@ -49,24 +52,17 @@ protected:
 public:
 	int _level=1;
 	hero();
-	hero(float a, float b, float c, float d, float e, float f, float g, float h, int i, int j,int k,int l);
+	hero(int a, float b, float c, float d, int e, float f, float g, float h, int i, int j,int k,int l,int m);
 	void gain_eqp(equipment eqp);
 	void sell_eqp(equipment eqp);
-	void judge_level_up(float x,hero me);
-	void level_up(hero me) ;
+;
 	void bonus();
 	void disbonus();
-	void kill_hero(hero me, hero other);
-	void kill_tower(hero me);
-	
-	void hero::kill_soiderA(soiderA x, hero me);
 
-	void hero::kill_soiderB(soiderB x, hero me);
-
-	void hero::kill_soiderC(soiderC x, hero me);
-
-	void hero::kill_soiderD(soiderD x, hero me);
 	void be_attacked_by(hero other);
+	int be_attacked_by_soider(hero a, Soider* b);
+	int be_attacked_by_tower(hero a, Tower* b);
+	int be_attacked_by_me(hero a, hero b);
 	void hero::exp_up(hero me,Soider *other);
 	inline float get_mp() { return _mp; }
 	inline float get_attackdis(){ return _attackdis; }

@@ -41,7 +41,7 @@ void Hero::SetAnimation(const char * name_each, const unsigned int num, bool run
 		sprintf(szName, "%s%d.png", name_each, i);
 		animation->addSpriteFrameWithFileName(szName); //加载动画的帧  
 	}
-	animation->setDelayPerUnit(0.2f);
+	animation->setDelayPerUnit(0.1f);
 	animation->setRestoreOriginalFrame(true);
 	animation->setLoops(-1); //动画循环
 	if (HeroDirecton != run_directon) {
@@ -75,7 +75,7 @@ void Hero::AttackAnimation(const char * name_each, const unsigned int num, bool 
 		sprintf(szName, "%s%d.png", name_each, i);
 		animation->addSpriteFrameWithFileName(szName); //加载动画的帧  
 	}
-	animation->setDelayPerUnit(0.15f);
+	animation->setDelayPerUnit(0.1f);
 	animation->setRestoreOriginalFrame(true);
 	animation->setLoops(1); //动画循环1次
 	if (HeroDirecton != run_directon) {
@@ -153,4 +153,130 @@ void Hero::update(float dt) {
 
 	//this->setPosition(this->getPosition() + moveLen);
 
+}
+
+
+
+
+void Hero::skill_1(Hero *hero1, Layer *maplayer)
+{
+
+	auto spr_1 = Sprite::create("1224.png");
+	spr_1->setScale(1.5f);
+	maplayer->addChild(spr_1, 2);
+	spr_1->setPosition(Vec2(hero1->getPosition()));
+	auto actionMove1 = CCMoveBy::create(2000.0f, Vec2(hero1->getPositionX() + 100, 0) * 1000);
+	spr_1->runAction(actionMove1);
+}
+
+
+void Hero::skill_2(Hero *hero1, Layer *maplayer) {
+	auto spr_2 = Sprite::create("skill2.png");
+	hero1->addChild(spr_2, 4,2000);
+	spr_2->setPosition(Vec2(hero1->getContentSize().width / 2, hero1->getContentSize().height));
+
+}
+
+void Hero::skill_3(Hero *hero1, Layer *maplayer) {
+
+	auto spr_3 = Sprite::create("skill3.png");
+	hero1->addChild(spr_3, 4, 1999);
+	spr_3->setPosition(Vec2(hero1->getContentSize().width / 2, hero1->getContentSize().height));
+}
+
+void Hero::skill_4(Hero *hero1, Layer *maplayer)
+{
+
+	auto spr_1 = Sprite::create("1224.png");
+	maplayer->addChild(spr_1, 2);
+	spr_1->setPosition(Vec2(hero1->getPosition()));
+	auto actionMove1 = CCMoveBy::create(2000.0f, Vec2(hero1->getPositionX() + 100, 0) * 1000);
+	spr_1->runAction(actionMove1);
+}
+
+
+void Hero::skill_5(Hero *hero1, Layer *maplayer) {
+	auto spr_2 = Sprite::create("skill5.png");
+	hero1->addChild(spr_2, 4, 2001);
+	spr_2->setPosition(Vec2(hero1->getContentSize().width / 2, hero1->getContentSize().height));
+
+}
+
+void Hero::skill_6(Hero *hero1, Layer *maplayer) {
+	auto spr_1 = Sprite::create("skill6.png");
+	spr_1->setScale(3.0f);
+	maplayer->addChild(spr_1, 2);
+	spr_1->setPosition(Vec2(hero1->getPosition()));
+	auto actionMove1 = CCMoveBy::create(2000.0f, Vec2(hero1->getPositionX() + 100, 0) * 1000);
+	spr_1->runAction(actionMove1);
+
+}
+void Hero::skill_7(Hero *hero1, Layer *maplayer)
+{
+
+	auto spr_7 = Sprite::create("1021.png");
+	auto spr_72 = Sprite::create("1021.png");
+	hero1->addChild(spr_7, 2, 2003);
+	hero1->addChild(spr_72, 2, 2004);
+	spr_7->setPosition(Vec2(hero1->getContentSize().width / 2, hero1->getContentSize().height));
+	spr_72->setPosition(Vec2(hero1->getContentSize().width / 2, hero1->getContentSize().height));
+	auto actionMove1 = CCMoveBy::create(1.0f, Vec2(200, 0));
+	auto actionMove2 = CCMoveBy::create(1.0f, Vec2(-200, 0));
+	CCAnimation* animation = CCAnimation::create();
+
+	for (int i = 1; i <= 2; i++) {
+		char szName[100] = { 0 };
+		sprintf(szName, "Female_mage_%d_skill.png", i);
+		animation->addSpriteFrameWithFileName(szName); //加载动画的帧  
+	}
+	animation->setDelayPerUnit(0.2f);
+	animation->setRestoreOriginalFrame(true);
+	animation->setLoops(1); //动画循环
+	//将动画包装成一个动作
+	CCAnimate* act = CCAnimate::create(animation);
+	m_HeroSprite->runAction(act);
+	spr_7->runAction(actionMove1);
+	spr_72->runAction(actionMove2);
+}
+
+
+void Hero::skill_8(Hero *hero1, Layer *maplayer) {
+	auto spr_2 = Sprite::create("1004.png");
+	hero1->addChild(spr_2, 4, 2005);
+	spr_2->setPosition(Vec2(hero1->getContentSize().width / 2, hero1->getContentSize().height));
+
+}
+
+void Hero::skill_9(Hero *hero1, Layer *maplayer) {
+
+	auto spr_9 = Sprite::create();
+	maplayer->addChild(spr_9, 2);
+	spr_9->setScale(8.0f);
+	spr_9->setPosition(Vec2(hero1->getPosition()));
+	CCAnimation* animation = CCAnimation::create();
+	for (int i = 1; i <= 4; i++) {
+		char szName[100] = { 0 };
+		sprintf(szName, "%s%d.png", "skill_9_", i);
+		animation->addSpriteFrameWithFile(szName); //加载动画的帧  
+	}
+	animation->setDelayPerUnit(0.1f);
+	animation->setRestoreOriginalFrame(true);
+	animation->setLoops(1);
+
+	//将动画包装成一个动作
+	CCAnimate* act = CCAnimate::create(animation);
+	CCAnimation* animation1 = CCAnimation::create();
+
+	for (int i = 1; i <= 2; i++) {
+		char szName[100] = { 0 };
+		sprintf(szName, "Female_mage_%d_skill.png", i);
+		animation1->addSpriteFrameWithFileName(szName); //加载动画的帧  
+	}
+	animation1->setDelayPerUnit(0.4f);
+	animation1->setRestoreOriginalFrame(true);
+	animation1->setLoops(1); //动画循环
+	//将动画包装成一个动作
+	CCAnimate* act1 = CCAnimate::create(animation1);
+	m_HeroSprite->runAction(act1);
+	spr_9->runAction(act);
 }

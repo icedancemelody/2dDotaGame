@@ -40,25 +40,31 @@ Soider * Soider::createWithSoiderTypes(SoiderTypes soiderType)
 	switch (soiderType) {
 	case SoiderType1:
 		soiderFramName = "soilder_1_run.png";
-		soider->setMaxblood(200);
-		soider->setBlood(200);
+		soider->setMaxblood(400);
+		soider->setBlood(400);
 		soider->setExp(30);
-		soider->setVal(21);
+		soider->setVal(100);
+		soider->setAttack_distance(100);
+		soider->setAd(50);
 		break;
 	   
 	case SoiderType2:
 		soiderFramName = "soilder2_1_run.png";
-		soider->setMaxblood(150);
-		soider->setBlood(150);
+		soider->setMaxblood(350);
+		soider->setBlood(350);
 		soider->setExp(20);
-		soider->setVal(18);
+		soider->setVal(90);
+		soider->setAttack_distance(300);
+		soider->setAd(80);
 		break;
 	case SoiderType3:
-		soiderFramName = "soilder2_1_run.png";
-		soider->setMaxblood(400);
-		soider->setBlood(400);
+		soiderFramName = "soilder3_1_run.png";
+		soider->setMaxblood(800);
+		soider->setBlood(800);
 		soider->setExp(50);
-		soider->setVal(90);
+		soider->setVal(200);
+		soider->setAttack_distance(500);
+		soider->setAd(150);
 		break;
 	}
 	//soider->initWithSpriteFrameName(soiderFramName);

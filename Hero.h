@@ -47,6 +47,7 @@ private:
 	CC_SYNTHESIZE(int, money, Money);
 	CC_SYNTHESIZE(int, exp, Exp);
 	CC_SYNTHESIZE(int, level, Level);
+	CC_SYNTHESIZE(int, attackrange, Attackrange);
 	CC_SYNTHESIZE(cocos2d::Vec2, velocity, Velocity);
 	CCSprite* m_HeroSprite;//精灵
 	char *Hero_name;//用来保存初始状态的精灵图片名称
@@ -77,5 +78,16 @@ public:
 	static Hero*createWithHeroTypes(HeroTypes heroType);
 	static Hero* create(const char * filename);
 	void update(float dt);
-
+	//1
+	void skill_1(Hero *hero1, Layer *maplayer);
+	void skill_2(Hero *hero1, Layer *maplayer);
+	void skill_3(Hero *hero1, Layer *maplayer);
+	//2
+	void skill_4(Hero *hero1, Layer *maplayer);
+	void skill_5(Hero *hero1, Layer *maplayer);
+	void skill_6(Hero *hero1, Layer *maplayer);
+	//3
+	void skill_7(Hero *hero1, Layer *maplayer);
+	void skill_8(Hero *hero1, Layer *maplayer);
+	void skill_9(Hero *hero1, Layer *maplayer);
 };
